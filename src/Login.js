@@ -1,16 +1,32 @@
-import React, {useState} from "react";
-import { View, TextInput, Button, StyleSheet, TouchableOpacity, Text, Alert } from 'react-native';
+import { NavigationContainer } from "@react-navigation/native";
+import React, { useState } from "react";
+import { View, TextInput, Button, StyleSheet, TouchableOpacity, Text, Alert, Image } from 'react-native';
+import logoImpacta from '../assets/images/impacta2.jpg';
 
-export const Login = () => {
 
-    const[email, setEmail] = useState('');
-    const[senha, setSenha] = useState('');
+export const Login = ({ navigation }) => {
 
-    const efetuarLogin = () =>{
-        Alert.alert(`Você digitou o e-mail: ${email} e a senha ${senha}` );
+    const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
+
+    const efetuarLogin = () => {
+        Alert.alert(`Você digitou o e-mail: ${email} e a senha ${senha}`, null,
+            [
+                {
+                    text: "Cancelar",
+                    style: "cancel"
+                },
+                {
+                    text: 'Ok', onPress: () => {
+                        navigation.navigate('Lista');
+                    }
+                }
+            ]);
     }
     return (
         <View style={estilo.container}>
+            <Image style={estilo.logo}
+                source={logoImpacta} />
             <TextInput
                 style={estilo.input}
                 value={email}
@@ -24,11 +40,8 @@ export const Login = () => {
                 placeholder="Digite sua senha"
                 secureTextEntry={true}
             />
-            <TouchableOpacity style= {estilo.button} onPress={efetuarLogin}>
-                <Text style={estilo.buttonText}>
-                    Entrar
-                </Text>
-            
+            <TouchableOpacity style={estilo.button} onPress={efetuarLogin}>
+                <Text style={estilo.buttonText}>Entrar</Text>
             </TouchableOpacity>
         </View>
     );
@@ -41,12 +54,21 @@ const estilo = StyleSheet.create({
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
+
+    },
+
+    logo: {
+        marginTop: -100,
+        width: '80%',
+        resizeMode: 'cover',
+        marginBottom: '8%'
     },
     input: {
         width: '80%',
         borderBottomColor: '#ccc',
         borderBottomWidth: 1,
-        marginBottom: '10%'
+        marginBottom: '10%',
+        paddingLeft: 10,
     },
 
     button: {
@@ -59,8 +81,8 @@ const estilo = StyleSheet.create({
         marginTop: '5%'
 
     },
-    buttonText:{
+    buttonText: {
         color: 'white',
-        fontSize: 16 
+        fontSize: 16
     }
 });

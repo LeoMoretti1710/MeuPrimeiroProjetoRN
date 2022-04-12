@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Text, Button, StyleSheet, View } from 'react-native';
 import { Componente2 } from './src/Componente2';
-import { Listas } from './src/Listas';
 import { Mensagem } from './src/Mensagem';
 
 export default () => {
@@ -26,9 +25,6 @@ export default () => {
         <View style={styles.cinza} />
         <View style={styles.verde} />
       </View>
-
-      <Listas/>
-      
       <View style={styles.tudoNoCentroLinha}>
         <View style={styles.vermelho} />
         <View style={styles.cinza} />
@@ -70,8 +66,8 @@ const styles = StyleSheet.create({
     height: 50
   },
 
-  textoTituloVermelho:{
-    fontSize:20,
+  textoTituloVermelho: {
+    fontSize: 20,
     color: 'red',
   }
 })
